@@ -42,13 +42,11 @@ module RescueFrom
 
       return if overrider.method_defined? name
 
-      outer_self = self
-
       # rubocop:disable Lint/RescueException
       overrider.define_method name do |*args, **kwargs, &block|
         super(*args, **kwargs, &block)
       rescue Exception => e
-        outer_self
+        self.class
           .ancestors
           .lazy
           .filter_map { |mod| mod.const_get :RescueFrom_Overrider if mod.const_defined? :RescueFrom_Overrider }
