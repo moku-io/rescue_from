@@ -25,8 +25,6 @@ module RescueFrom
       overrider = const_get :RescueFrom_Overrider
 
       patterns.each do |pattern|
-        raise ArgumentError, 'exception patterns need to respond to `===`' unless pattern.respond_to? :===
-
         overrider.handlers[pattern] = handler
       end
     end
