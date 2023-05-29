@@ -29,6 +29,12 @@ module RescueFrom
       end
     end
 
+    def relabel *patterns, to:, &message_generator
+      rescue_from(*patterns) do |e|
+        raise to, message_generator.call(e)
+      end
+    end
+
     def should_rescue_in? _method_name
       true
     end
