@@ -48,6 +48,12 @@ module RescueFrom
 
       return if overrider.method_defined? name
 
+      method_without_rescue = instance_method name
+
+      overrider.define_method :"#{name}_without_rescue" do |*args, **kwargs, &block|
+        method_without_rescue.bind_call(self, *args, **kwargs, &block)
+      end
+
       # rubocop:disable Lint/RescueException
       overrider.define_method name do |*args, **kwargs, &block|
         super(*args, **kwargs, &block)
