@@ -7,8 +7,9 @@ Gem::Specification.new do |spec|
   spec.email = ['info@moku.io']
   spec.license = 'MIT'
 
-  spec.summary = 'TODO'
-  spec.description = 'TODO'
+  spec.summary = 'An imitation of ActiveSupport::Rescuable that relies on Ruby\'s callbacks to reduce boilerplate code.'
+  spec.description = 'An imitation of ActiveSupport::Rescuable that relies on Ruby\'s callbacks to reduce ' \
+                     'boilerplate code.'
   spec.homepage = 'https://github.com/moku-io/rescue_from'
   spec.required_ruby_version = '>= 2.6.0'
 
@@ -26,4 +27,7 @@ Gem::Specification.new do |spec|
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+
+  spec.add_dependency 'activesupport', '~> 7.0.0'
+  spec.add_dependency 'therefore', '~> 1.0'
 end
