@@ -14,8 +14,6 @@ module RescueFrom
     def inherited subclass
       super
 
-      puts 'inside the inherited'
-
       subclass.extend Rescuable
     end
 
