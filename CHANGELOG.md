@@ -1,5 +1,13 @@
 # Changelog
 
+<!--[//]: # (
+## <Release number> <Date YYYY-MM-DD>
+### Breaking changes
+### Deprecations
+### New features
+### Bug fixes
+)-->
+
 ## 1.0.1 2023-06-07
 
 ### Bug fixes
