@@ -8,6 +8,12 @@
 ### Bug fixes
 )-->
 
+## 1.0.2 2023-08-30
+
+### Bug fixes
+
+- Removed the `Error` class.
+
 ## 1.0.1 2023-06-07
 
 ### Bug fixes
