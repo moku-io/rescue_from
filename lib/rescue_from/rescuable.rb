@@ -29,7 +29,7 @@ module RescueFrom
 
     def relabel *patterns, to:, &message_generator
       rescue_from(*patterns) do |e|
-        raise to, message_generator.call(e)
+        raise to, instance_exec(e, &message_generator)
       end
     end
 
@@ -63,7 +63,7 @@ module RescueFrom
           .filter_map { |ancestor_overrider| ancestor_overrider.handler_for e }
           .first
           .otherwise { raise e }
-          .therefore { |handler| handler.call e }
+          .therefore { |handler| instance_exec(e, &handler) }
       end
       # rubocop:enable Lint/RescueException
     end
