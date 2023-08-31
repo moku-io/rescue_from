@@ -1,0 +1,7 @@
+module RescueFrom
+  module Rescuable[T]
+    def rescue_from: (*Array::_Pattern[Exception] patterns) { () [self: T] -> untyped } -> void
+    def relabel: (*Array::_Pattern[Exception] patterns, to: Exception) { () [self: T] -> (String | untyped) } -> void
+    def should_rescue_in?: (Symbol method_name) -> bool
+  end
+end

@@ -7,7 +7,7 @@ An imitation of `ActiveSupport::Rescuable` that relies on Ruby's callbacks to re
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rescue_from', '~> 1.0'
+gem 'rescue_from', '~> 2.0'
 ```
 
 And then execute:
@@ -29,15 +29,15 @@ Simply extend with `RescueFrom::Rescuable` any class or module that you want to 
 ```ruby
 class DataImporter
   extend RescueFrom::Rescuable
-  
+
   rescue_from JSON::ParserError do
     []
   end
-  
+
   def temperature_data
     JSON.parse File.read('temperatures.json')
   end
-  
+
   def humidity_data
     JSON.parse File.read('humidity.json')
   end
@@ -51,16 +51,18 @@ Both `#temperature_data` and `#humidity_data` will return an empty array if the 
 ```ruby
 class Service
   extend RescueFrom::Rescuable
-  
+
   rescue_from(proc {|e| !e.message.start_with? 'failure'}) do
     nil
   end
-  
+
   ...
 end
 ```
 
 If no pattern matches the exception, it will be reraised.
+
+Handlers are called in the context of the receiver of the method that raised the exception.
 
 If you want to call a given method bypassing the automatic exception handling, you can append `_without_rescue` to its name:
 
@@ -105,7 +107,7 @@ If you want to limit automatic exception handling to only certain methods, you c
 
 class Service
   extend RescueFrom::Rescuable
-  
+
   ACTIONS = [:create, :update, :delete]
 
   def self.should_rescue_in? method_name
