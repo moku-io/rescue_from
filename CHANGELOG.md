@@ -8,6 +8,16 @@
 ### Bug fixes
 )-->
 
+## 2.0.0 2023-08-31
+
+### Breaking changes
+
+- Changed `self`-binding of exception handlers. Now handlers are executed in the same context as the method that raised the exception.
+
+### New features
+
+- Added RBS type signatures.
+
 ## 1.0.2 2023-08-30
 
 ### Bug fixes
